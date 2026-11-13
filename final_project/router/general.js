@@ -39,6 +39,10 @@ public_users.get('/isbn/:isbn', function (req, res) {
     const ISBN = req.params.isbn
     res.send(books[ISBN]);
 });
+async function getbooksbyISBN(isbn) {
+    const response = await axios.get(`http://localhost:5000/isbn/${isbn}`);
+    return response.data;
+}
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
@@ -52,6 +56,10 @@ public_users.get('/author/:author', function (req, res) {
     res.send(matchingBooks)
 
 });
+async function getbooksbyauthor(author) {
+    const response = await axios.get(`http://localhost:5000/author/${author}`);
+    return response.data;
+}
 
 // Get all books based on title
 public_users.get('/title/:title', function (req, res) {
@@ -63,6 +71,11 @@ public_users.get('/title/:title', function (req, res) {
     const matchingBooks = matchingKeys.map((key) => books[key]);
     res.send(matchingBooks);
 });
+
+async function getbooksbytitle(title) {
+    const response = await axios.get(`http://localhost:5000/title/${title}`);
+    return response.data;
+}
 
 //  Get book review
 public_users.get('/review/:isbn', function (req, res) {
