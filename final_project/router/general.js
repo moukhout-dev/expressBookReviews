@@ -28,6 +28,10 @@ public_users.get('/', function (req, res) {
     //Write your code here
     res.send(JSON.stringify(books, null, 4));
 });
+async function getAllBooks() {
+    const response = await axios.get("http://localhost:5000/");
+    return response.data;
+}
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function (req, res) {
